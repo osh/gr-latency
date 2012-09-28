@@ -8,11 +8,16 @@
 %include "latency_swig_doc.i"
 %include <std_vector.i>
 %include <std_string.i>
+%include <std_map.i>
+%include <std_pair.i>
 %include <typemaps.i>
 
 
 namespace std {
     %template(StrVector) vector<string>;
+    %template(DblVector) vector<double>;
+//    %template(ULLVector) vector<uint64_t>;
+    %template(LVector) vector<unsigned long>;
 }
 
 %{

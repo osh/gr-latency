@@ -22,12 +22,21 @@
 #define INCLUDED_LATENCY_PROBE_H
 
 #include <latency_api.h>
+#include <map>
 #include <gr_sync_block.h>
+#include "boost/tuple/tuple.hpp" 
 
 class latency_probe;
 typedef boost::shared_ptr<latency_probe> latency_probe_sptr;
 
 LATENCY_API latency_probe_sptr latency_make_probe (int item_size, std::vector<std::string> keys);
+
+typedef struct  {
+    uint64_t offset;
+    double delay;
+    double t_start;
+    double t_end;
+} latmes_t;
 
 /*!
  * \brief <+description+>
@@ -40,14 +49,20 @@ class LATENCY_API latency_probe : public gr_sync_block
 	latency_probe (int item_size, std::vector<std::string> keys);
     std::vector<pmt::pmt_t> d_keys;
     int d_itemsize;
-
+    std::map< pmt::pmt_t, std::vector< latmes_t  > > d_measurements;
  public:
 	~latency_probe ();
-
-
 	int work (int noutput_items,
 		gr_vector_const_void_star &input_items,
 		gr_vector_void_star &output_items);
+
+    std::vector<std::string> get_keys();
+    std::vector<unsigned long> get_offsets(std::string key);
+    std::vector<double> get_delays(std::string key);
+    std::vector<double> get_t_start(std::string key);
+    std::vector<double> get_t_end(std::string key);
+
+    void reset();
 };
 
 #endif /* INCLUDED_LATENCY_PROBE_H */

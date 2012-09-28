@@ -45,7 +45,7 @@ latency_tagger::latency_tagger (int item_size, int tag_frequency, std::string ta
 		gr_make_io_signature (1, 1, item_size)),
       d_tag_frequency(tag_frequency),
       d_key(pmt::pmt_intern(tag)),
-      d_src(pmt::pmt_intern(unique_name())),
+      d_src(pmt::pmt_intern(name())),
       d_itemsize(item_size)
 {
 }
