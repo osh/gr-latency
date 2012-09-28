@@ -1,23 +1,16 @@
 <?xml version="1.0"?>
 <block>
-  <name>Latency Tagger</name>
-  <key>latency_tagger</key>
+  <name>Latency Probe</name>
+  <key>latency_probe</key>
   <category>latency</category>
   <import>import latency</import>
-  <make>latency.tagger($type.size, $freq, $tagkey)</make>
+  <make>latency.probe($type.size, $tagkey)</make>
 
     <param>
         <name>Tag Key Name</name>
         <key>tagkey</key>
-        <value>latency0</value>
-        <type>string</type>
-    </param>
-
-    <param>
-        <name>Tag Frequency (in samples)</name>
-        <key>freq</key>
-        <value>100000</value>
-        <type>int</type>
+        <value>["latency0","latency1"]</value>
+        <type>raw</type>
     </param>
 
       <param>
@@ -58,6 +51,7 @@
     <source>
         <name>out</name>
         <type>$type</type>
+        <optional>1</optional>
     </source>
 
 </block>

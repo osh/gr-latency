@@ -22,5 +22,6 @@
 ########################################################################
 install(FILES
     latency_api.h
-    latency_tagger.h DESTINATION include/latency
+    latency_tagger.h
+    latency_probe.h DESTINATION include/latency
 )

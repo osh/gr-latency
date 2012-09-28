@@ -6,13 +6,28 @@
 
 //load generated python docstrings
 %include "latency_swig_doc.i"
+%include <std_vector.i>
+%include <std_string.i>
+%include <typemaps.i>
+
+
+namespace std {
+    %template(StrVector) vector<string>;
+}
 
 %{
+typedef std::vector<std::string> strvec;
 #include "latency_tagger.h"
+#include "latency_probe.h"
 %}
+
+typedef std::vector<std::string> strvec;
 
 GR_SWIG_BLOCK_MAGIC(latency,tagger);
 %include "latency_tagger.h"
+
+GR_SWIG_BLOCK_MAGIC(latency,probe);
+%include "latency_probe.h"
 
 #if SWIGGUILE
 %scheme %{

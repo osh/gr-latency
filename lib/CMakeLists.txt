@@ -21,7 +21,7 @@
 # Setup library
 ########################################################################
 include(GrPlatform) #define LIB_SUFFIX
-add_library(gnuradio-latency SHARED latency_tagger.cc )
+add_library(gnuradio-latency SHARED latency_tagger.cc latency_probe.cc )
 target_link_libraries(gnuradio-latency ${Boost_LIBRARIES} ${GRUEL_LIBRARIES} ${GNURADIO_CORE_LIBRARIES})
 set_target_properties(gnuradio-latency PROPERTIES DEFINE_SYMBOL "gnuradio_latency_EXPORTS")
 
@@ -47,3 +47,7 @@ add_definitions(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
 add_executable(qa_latency_tagger qa_latency_tagger.cc)
 target_link_libraries(qa_latency_tagger gnuradio-latency ${Boost_LIBRARIES})
 GR_ADD_TEST(qa_latency_tagger qa_latency_tagger)
+
+add_executable(qa_latency_probe qa_latency_probe.cc)
+target_link_libraries(qa_latency_probe gnuradio-latency ${Boost_LIBRARIES})
+GR_ADD_TEST(qa_latency_probe qa_latency_probe)
