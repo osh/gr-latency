@@ -90,7 +90,7 @@ if __name__ == '__main__':
     srs = [0.78125e6, 1.5625e6, 3.125e6, 6.25e6, 12.5e6, 25e6];
 
     fidx = 0;
-    for sb in [True, False]:
+    for sb in [False]:
         fidx = fidx + 1;
         f = figure(fidx);
         ax = subplot(1,1,1);
@@ -110,7 +110,7 @@ if __name__ == '__main__':
             pts.append(  ax.plot(srv[sr][0], srv[sr][1], label="%f MSps"%(sr/1e6))  )
            
         ax.set_yscale('log'); 
-        title('GR Latency Measurement');
+        title('Startup Latency Transients for Default Large GR Buffer Sizes');
         xlabel("sample count");
         ylabel("propagation time (ms)");
         ax.legend(loc='upper right');
